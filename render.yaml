@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: mn-telegram-bot
+    env: python
+    buildCommand: pip install pyrogram flask tgcrypto
+    startCommand: RENDER=1 python main.py
+    envVars:
+      - key: API_ID
+        sync: false
+      - key: API_HASH
+        sync: false
+      - key: BOT_TOKEN
+        sync: false
+      - key: OWNER_ID
+        sync: false
+      - key: DELETE_DELAY
+        value: "30"
+      - key: RENDER
+        value: "1"
+    healthCheckPath: /
+    autoDeploy: false
