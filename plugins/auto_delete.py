@@ -1,5 +1,5 @@
-# Auto-delete plugin for MN-Bot
-# Credit: @MrMNTG Or @MusammilN
+# Auto-delete plugin for NikzPy
+# Credit: @NikzPy
 
 from pyrogram import Client, filters
 import asyncio
