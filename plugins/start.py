@@ -1,6 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from plugins.nikz import Translation
+from plugins.logger import Logger
 import logging
 import time
 
@@ -12,18 +13,16 @@ async def start_command(client: Client, message: Message):
         bot_info = await client.get_me()
         
         await message.reply_photo(
-            photo="https://envs.sh/tjD.jpg",
+            photo=Transition.START_PIC,
             caption=Translation.START_TEXT,
             reply_markup=START_BUTTONS
         )
         
-        logging.info(f"✅ Start command executed for user {user.id} ({user.first_name})")
+        logging.info(Logger.START_SUCCESS)
         
     except Exception as e:
-        logging.error(f"❌ Error in start command: {e}")
-        await message.reply_text(
-            "⚠️ Sorry, there was an error processing your request. Please try again later."
-        )
+        logging.error(Logger.START_ERROR)
+        await message.reply_text(Logger.START_WRING)
 
 @Client.on_message(filters.command("start") & filters.group)
 async def start_group_command(client: Client, message: Message):
@@ -34,18 +33,16 @@ async def start_group_command(client: Client, message: Message):
         bot_info = await client.get_me()
         
         await message.reply_photo(
-            photo="https://envs.sh/tjD.jpg",
+            photo=Transition.START_PIC,
             caption=Translation.GROUP_WELCOME_TEXT,
             reply_markup=START_BUTTONS
         )
         
-        logging.info(f"✅ Start command executed in group {chat.id} ({chat.title}) by user {user.id}")
+        logging.info(Logger.GROUP_START_SUCCESS)
         
     except Exception as e:
-        logging.error(f"❌ Error in group start command: {e}")
-        await message.reply_text(
-            "⚠️ Sorry, there was an error processing your request."
-        )
+        logging.error(Logger.GROUP_START_ERROR)
+        await message.reply_text(Logger.GROUP_WRING)
 
 @Client.on_callback_query(filters.regex("ping"))
 async def ping_callback(client: Client, callback_query: CallbackQuery):
@@ -64,11 +61,11 @@ async def ping_callback(client: Client, callback_query: CallbackQuery):
         # Show ping result as alert (only answer once)
         await callback_query.answer(Translation.PING_TEXT, show_alert=True)
         
-        logging.info(f"✅ Ping callback executed for user {callback_query.from_user.id} - Response time: {response_time}ms")
+        logging.info(Logger.PING_LOG_SUCCESS)
         
     except Exception as e:
-        logging.error(f"❌ Error in ping callback: {e}")
-        await callback_query.answer("⚠️ Error checking ping", show_alert=True)
+        logging.error(Logger.PING_ERROR)
+        await callback_query.answer(Logger.PING_WRING, show_alert=True)
 
 @Client.on_callback_query(filters.regex("chatid"))
 async def chatid_callback(client: Client, callback_query: CallbackQuery):
@@ -81,9 +78,9 @@ async def chatid_callback(client: Client, callback_query: CallbackQuery):
         # Show detailed chat info as alert
         await callback_query.answer(Translation.CHATID_TEXT, show_alert=True)
         
-        logging.info(f"✅ ChatID callback executed by user {user.id} in chat {chat.id}")
+        logging.info(Logger.CHATID_SUCCESS)
         
     except Exception as e:
-        logging.error(f"❌ Error in chatid callback: {e}")
-        await callback_query.answer("⚠️ Error getting chat info", show_alert=True)
-
+        logging.error(Logger.CHATID_ERROR)
+        await callback_query.answer(Logger.CHATID_WRING, show_alert=True)
+        
