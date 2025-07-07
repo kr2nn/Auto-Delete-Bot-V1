@@ -39,7 +39,7 @@ class OWNER:
 class DATABASE:
     """Database configuration"""
     URL: str = os.getenv("DATABASE_URL", "")
-    NAME: str = os.getenv("DATABASE_NAME", "AutoDelete")
+    NAME: str = os.getenv("DATABASE_NAME", "mn_bot")
 
 # Validate all configurations on import
 try:
