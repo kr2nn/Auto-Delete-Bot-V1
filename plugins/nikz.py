@@ -1,6 +1,7 @@
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 class Translation(object):
+  START_PIC = "https://envs.sh/tjD.jpg"
   START_TEXT = """
   🪷 **Welcome {user.first_name}!**
 
