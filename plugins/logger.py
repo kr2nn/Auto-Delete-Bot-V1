@@ -3,6 +3,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQ
 class Logger(object):
   START_SUCCESS = "✅ Start command executed for user {user.id} ({user.first_name})"
   START_ERROR = "❌ Error in start command: {e}"
+  START_WRING = "⚠️ Sorry, there was an error processing your request. Please try again later."
   GROUP_START_SUCCESS = "✅ Start command executed in group {chat.id} ({chat.title}) by user {user.id}"
   GROUP_START_ERROR = "❌ Error in group start command: {e}"
   GROUP_WRING = "⚠️ Sorry, there was an error processing your request."
