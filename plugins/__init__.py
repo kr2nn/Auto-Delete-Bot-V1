@@ -18,10 +18,7 @@ PLUGIN_INFO = {
 # Available plugins
 AVAILABLE_PLUGINS = [
     "start",
-    "help", 
-    "ping",
-    "auto_delete",
-    "config_cmd"
+    "auto_delete"
 ]
 
 logging.info(f"📦 Loading {len(AVAILABLE_PLUGINS)} plugins...")
